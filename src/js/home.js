@@ -98,6 +98,12 @@ fetch('https://randomuser.me/api/')
     return html.body.children[0];
   }
 
+  function addEventClick($element){
+    $element.addEventListener('click', function() {
+      alert('click');
+    })
+  }
+
   // console.log(videoItemTemplate('../src/images/covers/bitcoin.jpg', 'bitcoin'));
   ////////////////// selectores en jQuery///////////////////////////////////
   //const $home = $('.home .list #item')  // por convencion el $ es para saber que es un elemento del DOM
@@ -115,7 +121,7 @@ fetch('https://randomuser.me/api/')
       //debugger
       //$actionContainer.
       $container.append(movieElement);
-      //console.log(HTMLString);
+      addEventClick(movieElement);
     })
   }
 
