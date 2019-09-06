@@ -73,6 +73,14 @@ fetch('https://randomuser.me/api/')
     const data = await response.json()
     return data
   }
+  const $form = document.getElementById('form')
+  const $home = document.getElementById('home')
+
+  $form.addEventListener('submit', (event) => {
+    //debugger
+    event.preventDefault();
+    $home.classList.add('search-active');
+  })
 
   const actionList = await getData('https://yts.lt/api/v2/list_movies.json?genre=action')
   const dramaList = await getData('https://yts.lt/api/v2/list_movies.json?genre=drama')
@@ -99,12 +107,13 @@ fetch('https://randomuser.me/api/')
   }
 
   function addEventClick($element){
-    $element.addEventListener('click', function() {
-      alert('click');
+    $element.addEventListener('click', () => {
+      // alert('click');
+      showModal()
     })
   }
 
-  // console.log(videoItemTemplate('../src/images/covers/bitcoin.jpg', 'bitcoin'));
+
   ////////////////// selectores en jQuery///////////////////////////////////
   //const $home = $('.home .list #item')  // por convencion el $ es para saber que es un elemento del DOM
 
@@ -147,8 +156,6 @@ fetch('https://randomuser.me/api/')
 
 
   const $featuringContainer = document.getElementById('featuring')
-  const $form = document.getElementById('form')
-  const $home = document.getElementById('home')
 
   const $modal = document.getElementById('modal')
   const $overlay = document.getElementById('overlay')
@@ -156,11 +163,20 @@ fetch('https://randomuser.me/api/')
 
   // buscar elementos dentro de #modal
   // document.querySelector('#modal img')  así está bien pero se pude optimizar así:
-  const $modalImage = $modal.querySelector('img');
   const $modalTitle = $modal.querySelector('h1');
+  const $modalImage = $modal.querySelector('img');
   const $modalDescription = $modal.querySelector('p');
 
+  function showModal(){
+    $overlay.classList.add('active');
+    $modal.style.animation = 'modalIn .8s forwards';
+  }
 
+  $hideModal.addEventListener('click', hideModal);
+  function hideModal(){
+    $overlay.classList.remove('active');
+    $modal.style.animation = 'modalOut .8s forwards';
+  }
 
 })();
 
